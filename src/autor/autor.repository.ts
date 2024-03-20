@@ -27,7 +27,7 @@ export class AutorRepository {
     );
 
     if (!IdUsuario) {
-      throw new Error('Autor não existe');
+      throw new Error('Autor não existe!');
     }
 
     return IdUsuario;

@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, MinLength, MaxLength } from 'class-validator';
 import { EmailEhUnico } from '../validacao/email-eh-unico.validator';
 
 export class AtualizaAutorDTO {
@@ -11,7 +11,8 @@ export class AtualizaAutorDTO {
   @IsOptional()
   email: string;
 
-  @MinLength(5, { message: 'A biografia precisa ter pelo menos 500 caracteres!' })
+  @MinLength(100, { message: 'A biografia precisa ter pelo menos 100 caracteres!' })
+  @MaxLength(500, { message: 'A biografia precisa ter no máximo 500 caracteres!'})
   @IsOptional()
   biografia: string;
 }

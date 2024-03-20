@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, } from '@nestjs/common';
 import { v4 as uuid } from 'uuid';
 import { AtualizaAutorDTO } from './dto/AtualizaAutor.dto';
 import { CriaAutorDTO } from './dto/CriaAutor.dto';
@@ -19,7 +11,7 @@ export class AutorController {
   constructor(private autorRepository: AutorRepository) {}
 
   @Post()
-  async criaUsuario(@Body() dadosDoAutor: CriaAutorDTO) {
+  async criaAutor(@Body() dadosDoAutor: CriaAutorDTO) {
     const autorEntity = new AutorEntity();
     autorEntity.email = dadosDoAutor.email;
     autorEntity.biografia = dadosDoAutor.biografia;
@@ -30,7 +22,7 @@ export class AutorController {
     this.autorRepository.salvar(autorEntity);
 
     return {
-      usuario: new ListaAutorDTO(autorEntity.id, autorEntity.nome, autorEntity.email, autorEntity.biografia, autorEntity.data),
+      autor: new ListaAutorDTO(autorEntity.id, autorEntity.nome, autorEntity.email, autorEntity.biografia, autorEntity.data),
       messagem: 'Autor criado com sucesso!',
     };
   }
@@ -56,7 +48,7 @@ export class AutorController {
     );
 
     return {
-      usuario: autorAtualizado,
+      autor: autorAtualizado,
       messagem: 'Autor atualizado com sucesso!',
     };
   }
@@ -66,7 +58,7 @@ export class AutorController {
     const autorRemovido = await this.autorRepository.remove(id);
 
     return {
-      usuario: autorRemovido,
+      autor: autorRemovido,
       messagem: 'Autor removido com suceso!',
     };
   }
